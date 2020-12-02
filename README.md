@@ -1,39 +1,132 @@
-# Project Name
+# System Design Capstone
 
-> Project description
+> Deploy and scale a service to support up to 10K requests per second
 
-## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+[API Documentation](#api-documentation)
+* [List similar homes](#list-similar-homes)
+* [Create listing](#create-listing)
+* [Update listing](#update-listing)
+* [Delete listing](#delete-listing)
 
-## Usage
+## API Documentation
 
-> Some usage instructions
+**Base url:** /api/homes
 
-## Requirements
+API reference for managing home listing data that supports the similar listings carousel
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+#### List similar homes
+**GET** /listings/:listing_id/similar
 
-- Node 6.13.0
-- etc
+Lists home profiles that are similar to a selected home listing
 
-## Development
+#### Path Parameters
+```listing_id``` integer
 
-### Installing Dependencies
+The unique id of the selected home listing
 
-From within the root directory:
+#### Success Status Code:
+```200```
 
-```sh
-npm install -g webpack
-npm install
+#### Response
+
+An array of primary listing objects
+
+```json
+[
+  {
+    "id": "Number",
+    "price": "String",
+    "size_bd": "Number",
+    "size_ba": "Number",
+    "size_sqft": "String",
+    "address": "String",
+    "neighborhood": "String",
+    "image": "String"
+  }
+]
 ```
 
+#### Create Listing
+**POST** /listings
+
+Creates a new home listing
+
+#### Request Body
+```json
+{
+  "id": "Number",
+  "price": "String",
+  "size_bd": "Number",
+  "size_ba": "Number",
+  "size_sqft": "String",
+  "address": "String",
+  "neighborhood": "String",
+  "image": "String"
+}
+```
+
+#### Success Status Code
+```201```
+
+#### Response
+errors
+
+Any errors that occurred during the request.
+
+
+#### Update Listing
+**PUT** /listings/:listing_id
+
+Updates the details of an existing listing
+
+#### Path Parameters
+```listing_id``` integer
+
+**REQUIRED**
+
+The unique id of the home listing to update
+
+#### Request Body
+JSON object containing the attributes to be updated. All attributes must be included.
+```json
+{
+  "id": "Number",
+  "price": "String",
+  "size_bd": "Number",
+  "size_ba": "Number",
+  "size_sqft": "String",
+  "address": "String",
+  "neighborhood": "String",
+  "image": "String"
+}
+```
+#### Success Status Code
+```204```
+
+#### Response
+errors
+
+Any errors that occurred during the request.
+
+#### Delete Listing
+**DELETE** /listings/:listing_id
+
+Removes a home listing from the database.
+
+#### Path Parameters
+```listing_id``` integer
+
+**REQUIRED**
+
+The unique id of the home listing to be removed.
+
+#### Success Status Code
+```204```
+
+#### Response
+errors
+
+Any errors that occurred during the request.
