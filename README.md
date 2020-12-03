@@ -10,6 +10,8 @@ This service displays similar homes related to a real estate listing and indicat
 * [Create listing](#create-listing)
 * [Update listing](#update-listing)
 * [Delete listing](#delete-listing)
+* [Add to favorites](#add-to-favorites)
+* [Remove from favorites](#remove-from-favorites)
 
 ## API Documentation
 
@@ -18,7 +20,7 @@ This service displays similar homes related to a real estate listing and indicat
 API reference for managing home listing data that supports the similar listings carousel
 
 * ### List similar homes
-  * __GET__ /listings/:listing_id/similar
+  * __GET__ ```/listings/:listing_id/similar```
 
     *Lists home profiles that are similar to a selected home listing*
   * __Path Parameters:__
@@ -44,7 +46,7 @@ API reference for managing home listing data that supports the similar listings 
     ```
 
 * ### Create Listing
-  * __POST__ /listings
+  * __POST__ ```/listings```
 
     *Creates a new home listing*
 
@@ -66,13 +68,13 @@ API reference for managing home listing data that supports the similar listings 
 
   * __Response:__
 
-    errors
+    ```errors```
 
     *Any errors that occurred during the request.*
 
 
 * ### Update Listing
-  * __PUT__ /listings/:listing_id
+  * __PUT__ ```/listings/:listing_id```
 
     *Updates the details of an existing listing*
 
@@ -80,7 +82,7 @@ API reference for managing home listing data that supports the similar listings 
 
     ```listing_id``` integer
 
-    **REQUIRED**
+    ****REQUIRED***
 
     *The unique ID of the home listing to update*
 
@@ -103,12 +105,12 @@ API reference for managing home listing data that supports the similar listings 
 
   * __Response:__
 
-    errors
+    ```errors```
 
     *Any errors that occurred during the request.*
 
 * ### Delete Listing
-  * __DELETE__ /listings/:listing_id
+  * __DELETE__ ```/listings/:listing_id```
 
     *Removes a home listing from the database.*
 
@@ -116,7 +118,7 @@ API reference for managing home listing data that supports the similar listings 
 
     ```listing_id``` integer
 
-    **REQUIRED**
+    ****REQUIRED***
 
     *The unique id of the home listing to be removed.*
 
@@ -124,6 +126,58 @@ API reference for managing home listing data that supports the similar listings 
 
   * __Response:__
 
-    errors
+    ```errors```
+
+    *Any errors that occurred during the request.*
+
+* ### Add to favorites
+  * __POST__ ```/listings/:listing_id/user/:user_id/favorites```
+
+    *adds a listing to the user's favorites list*
+
+  * __Path Parameters:__
+
+    ```user_id``` integer
+
+    ****REQUIRED***
+
+    *The unique id of the user.*
+    ```listing_id``` integer
+
+    ****REQUIRED***
+
+    *The unique id of the home listing to be added to the user's favorites list.*
+
+  * Success Status Code: ```201```
+
+  * __Response:__
+
+    ```errors```
+
+    *Any errors that occurred during the request.*
+
+* ### Remove from favorites
+  * __DELETE__ ```/listings/:listing_id/user/:user_id/favorites```
+
+    *removes a listing from the user's favorites list*
+
+  * __Path Parameters:__
+
+    ```user_id``` integer
+
+    ****REQUIRED***
+
+    *The unique id of the user.*
+    ```listing_id``` integer
+
+    ****REQUIRED***
+
+    *The unique id of the home listing to be added to the user's favorites list.*
+
+  * Success Status Code: ```204```
+
+  * __Response:__
+
+    ```errors```
 
     *Any errors that occurred during the request.*
