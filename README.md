@@ -1,7 +1,6 @@
 # Similar Homes Carousel
 
-This service displays similar homes related to a real estate listing and indicates if the displayed listings have been saved to the user's favorites list.
-
+This service displays an carousel consisting of images and details of similar homes related to a real estate listing.
 
 ## Table of Contents
 
