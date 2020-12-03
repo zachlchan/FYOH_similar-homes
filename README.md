@@ -1,6 +1,6 @@
-# System Design Capstone
+# Similar Homes Carousel
 
-> Deploy and scale a service to support up to 10K requests per second
+This service displays similar homes related to a real estate listing and indicates if the displayed listings have been saved to the user's favorites list.
 
 
 ## Table of Contents
@@ -17,116 +17,113 @@
 
 API reference for managing home listing data that supports the similar listings carousel
 
-#### List similar homes
-**GET** /listings/:listing_id/similar
+* ### List similar homes
+  * __GET__ /listings/:listing_id/similar
 
-Lists home profiles that are similar to a selected home listing
+    *Lists home profiles that are similar to a selected home listing*
+  * __Path Parameters:__
 
-#### Path Parameters
-```listing_id``` integer
+      ```listing_id``` integer
 
-The unique id of the selected home listing
+      *The unique ID of the selected home listing*
+  * Success Status Code: ```200```
+  * __Response:__
+    ```json
+    [
+      {
+        "id": "Number",
+        "price": "String",
+        "size_bd": "Number",
+        "size_ba": "Number",
+        "size_sqft": "String",
+        "address": "String",
+        "neighborhood": "String",
+        "image": "String"
+      }
+    ]
+    ```
 
-#### Success Status Code:
-```200```
+* ### Create Listing
+  * __POST__ /listings
 
-#### Response
+    *Creates a new home listing*
 
-An array of primary listing objects
+  * __Request Body:__
+    ```json
+    {
+      "id": "Number",
+      "price": "String",
+      "size_bd": "Number",
+      "size_ba": "Number",
+      "size_sqft": "String",
+      "address": "String",
+      "neighborhood": "String",
+      "image": "String"
+    }
+    ```
 
-```json
-[
-  {
-    "id": "Number",
-    "price": "String",
-    "size_bd": "Number",
-    "size_ba": "Number",
-    "size_sqft": "String",
-    "address": "String",
-    "neighborhood": "String",
-    "image": "String"
-  }
-]
-```
+  * Success Status Code: ```201```
 
-#### Create Listing
-**POST** /listings
+  * __Response:__
 
-Creates a new home listing
+    errors
 
-#### Request Body
-```json
-{
-  "id": "Number",
-  "price": "String",
-  "size_bd": "Number",
-  "size_ba": "Number",
-  "size_sqft": "String",
-  "address": "String",
-  "neighborhood": "String",
-  "image": "String"
-}
-```
-
-#### Success Status Code
-```201```
-
-#### Response
-errors
-
-Any errors that occurred during the request.
+    *Any errors that occurred during the request.*
 
 
-#### Update Listing
-**PUT** /listings/:listing_id
+* ### Update Listing
+  * __PUT__ /listings/:listing_id
 
-Updates the details of an existing listing
+    *Updates the details of an existing listing*
 
-#### Path Parameters
-```listing_id``` integer
+  * __Path Parameters__
 
-**REQUIRED**
+    ```listing_id``` integer
 
-The unique id of the home listing to update
+    **REQUIRED**
 
-#### Request Body
-JSON object containing the attributes to be updated. All attributes must be included.
-```json
-{
-  "id": "Number",
-  "price": "String",
-  "size_bd": "Number",
-  "size_ba": "Number",
-  "size_sqft": "String",
-  "address": "String",
-  "neighborhood": "String",
-  "image": "String"
-}
-```
-#### Success Status Code
-```204```
+    *The unique ID of the home listing to update*
 
-#### Response
-errors
+  * __Request Body:__
 
-Any errors that occurred during the request.
+    *JSON object containing the attributes to be updated. All attributes must be included.*
+    ```json
+    {
+      "id": "Number",
+      "price": "String",
+      "size_bd": "Number",
+      "size_ba": "Number",
+      "size_sqft": "String",
+      "address": "String",
+      "neighborhood": "String",
+      "image": "String"
+    }
+    ```
+  * Success Status Code: ```204```
 
-#### Delete Listing
-**DELETE** /listings/:listing_id
+  * __Response:__
 
-Removes a home listing from the database.
+    errors
 
-#### Path Parameters
-```listing_id``` integer
+    *Any errors that occurred during the request.*
 
-**REQUIRED**
+* ### Delete Listing
+  * __DELETE__ /listings/:listing_id
 
-The unique id of the home listing to be removed.
+    *Removes a home listing from the database.*
 
-#### Success Status Code
-```204```
+  * __Path Parameters:__
 
-#### Response
-errors
+    ```listing_id``` integer
 
-Any errors that occurred during the request.
+    **REQUIRED**
+
+    *The unique id of the home listing to be removed.*
+
+  * Success Status Code: ```204```
+
+  * __Response:__
+
+    errors
+
+    *Any errors that occurred during the request.*
