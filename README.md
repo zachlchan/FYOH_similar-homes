@@ -7,27 +7,27 @@ This service displays similar homes related to a real estate listing and indicat
 
 [API Documentation](#api-documentation)
 * [List similar homes](#list-similar-homes)
-* [Create listing](#create-listing)
-* [Update listing](#update-listing)
-* [Delete listing](#delete-listing)
-* [Add to favorites](#add-to-favorites)
-* [Remove from favorites](#remove-from-favorites)
+* [Add similar home](#add-similar-home)
+* [Update similar home](#update-similar-home)
+* [Remove similar listing](#remove-similar-home)
 
 ## API Documentation
 
-**Base url:** /api/homes
+**Base url:** /api/listings/:listing_id
 
 API reference for managing home listing data that supports the similar listings carousel
 
 * ### List similar homes
-  * __GET__ ```/listings/:listing_id/similar```
+  * __GET__ ```/similar-homes```
 
-    *Lists home profiles that are similar to a selected home listing*
+    *Lists home profiles that are similar to a selected listing*
+
   * __Path Parameters:__
 
       ```listing_id``` integer
 
       *The unique ID of the selected home listing*
+
   * Success Status Code: ```200```
   * __Response:__
     ```json
@@ -45,10 +45,10 @@ API reference for managing home listing data that supports the similar listings 
     ]
     ```
 
-* ### Create Listing
-  * __POST__ ```/listings```
+* ### Add similar home
+  * __POST__ ```/similar-homes```
 
-    *Creates a new home listing*
+    *Add a listing to collection of similar homes*
 
   * __Request Body:__
     ```json
@@ -73,32 +73,25 @@ API reference for managing home listing data that supports the similar listings 
     *Any errors that occurred during the request.*
 
 
-* ### Update Listing
-  * __PUT__ ```/listings/:listing_id```
+* ### Update similar home
+  * __PUT__ ```/similar-homes/:similar-home_id```
 
     *Updates the details of an existing listing*
 
   * __Path Parameters__
 
-    ```listing_id``` integer
+    ```similar-home_id``` integer
 
     ****REQUIRED***
 
-    *The unique ID of the home listing to update*
+    *The unique ID of the similar home listing to update*
 
   * __Request Body:__
 
     *JSON object containing the attributes to be updated. All attributes must be included.*
     ```json
     {
-      "id": "Number",
-      "price": "String",
-      "size_bd": "Number",
-      "size_ba": "Number",
-      "size_sqft": "String",
-      "address": "String",
-      "neighborhood": "String",
-      "image": "String"
+      "similarity_weight": "Number",
     }
     ```
   * Success Status Code: ```204```
@@ -109,70 +102,18 @@ API reference for managing home listing data that supports the similar listings 
 
     *Any errors that occurred during the request.*
 
-* ### Delete Listing
-  * __DELETE__ ```/listings/:listing_id```
+* ### Remove similar home
+  * __DELETE__ ```/similar-homes/:similar-home_id```
 
-    *Removes a home listing from the database.*
-
-  * __Path Parameters:__
-
-    ```listing_id``` integer
-
-    ****REQUIRED***
-
-    *The unique id of the home listing to be removed.*
-
-  * Success Status Code: ```204```
-
-  * __Response:__
-
-    ```errors```
-
-    *Any errors that occurred during the request.*
-
-* ### Add to favorites
-  * __POST__ ```/listings/:listing_id/user/:user_id/favorites```
-
-    *adds a listing to the user's favorites list*
+    *Removes a home listing from the similar homes collection.*
 
   * __Path Parameters:__
 
-    ```user_id``` integer
+    ```similar-home_id``` integer
 
     ****REQUIRED***
 
-    *The unique id of the user.*
-    ```listing_id``` integer
-
-    ****REQUIRED***
-
-    *The unique id of the home listing to be added to the user's favorites list.*
-
-  * Success Status Code: ```201```
-
-  * __Response:__
-
-    ```errors```
-
-    *Any errors that occurred during the request.*
-
-* ### Remove from favorites
-  * __DELETE__ ```/listings/:listing_id/user/:user_id/favorites```
-
-    *removes a listing from the user's favorites list*
-
-  * __Path Parameters:__
-
-    ```user_id``` integer
-
-    ****REQUIRED***
-
-    *The unique id of the user.*
-    ```listing_id``` integer
-
-    ****REQUIRED***
-
-    *The unique id of the home listing to be added to the user's favorites list.*
+    *The unique id of the similar home listing to be removed.*
 
   * Success Status Code: ```204```
 
