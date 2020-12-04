@@ -9,6 +9,9 @@ This service displays an carousel consisting of images and details of similar ho
 * [Add similar home](#add-similar-home)
 * [Update similar home](#update-similar-home)
 * [Remove similar listing](#remove-similar-home)
+* [List favorites](#list-favorites)
+* [Add favorite listing](#add-favorite-listing)
+* [Remove favorite listing](#remove-favorite-listing)
 
 ## API Documentation
 
@@ -71,11 +74,13 @@ API reference for managing home listing data that supports the similar listings 
 
     *Any errors that occurred during the request.*
 
+  * Error Status Code: ```400```
+
 
 * ### Update similar home
   * __PUT__ ```/similar-homes/:similar-home_id```
 
-    *Updates the details of an existing listing*
+    *Updates the similarity weighting of a similar home*
 
   * __Path Parameters__
 
@@ -101,6 +106,8 @@ API reference for managing home listing data that supports the similar listings 
 
     *Any errors that occurred during the request.*
 
+  * Error Status Code: ```400```
+
 * ### Remove similar home
   * __DELETE__ ```/similar-homes/:similar-home_id```
 
@@ -121,3 +128,87 @@ API reference for managing home listing data that supports the similar listings 
     ```errors```
 
     *Any errors that occurred during the request.*
+
+  * Error Status Code: ```400```
+
+* ### List favorites
+  * __GET__ ```/user/:user_id/favorites```
+
+    *Lists a users favorited listings by listing ID*
+
+  * __Path Parameters:__
+
+      ```user_id``` integer
+
+      *The unique ID of the user*
+
+  * Success Status Code: ```200```
+  * __Response:__
+    ```json
+    [
+      {
+        "favorite_id": "Number",
+      }
+    ]
+    ```
+
+* ### Add favorite listing
+  * __POST__ ```user/user:id/favorites/```
+
+    *Add a listing to collection of similar homes*
+
+  * __Path Parameters:__
+
+    ```user_id``` integer
+
+    ****REQUIRED***
+
+    *The unique id of the favorited listing to be added.*
+
+  * __Request Body:__
+    ```json
+    {
+      "favorite_id": "Number",
+    }
+    ```
+
+  * Success Status Code: ```201```
+
+  * __Response:__
+
+    ```errors```
+
+    *Any errors that occurred during the request.*
+
+  * Error Status Code: ```400```
+
+* ### Remove favorite listing
+  * __DELETE__ ```user/user:id/favorites/```
+
+    *Removes a favorited listing from the user's favorites.*
+
+  * __Path Parameters:__
+
+    ```user_id``` integer
+
+    ****REQUIRED***
+
+    *The unique id of the favorited listing to be removed.*
+
+  * __Request Body:__
+    ```json
+    {
+      "favorite_id": "Number",
+    }
+    ```
+
+  * Success Status Code: ```204```
+
+  * __Response:__
+
+    ```errors```
+
+    *Any errors that occurred during the request.*
+
+  * Error Status Code: ```400```
+
