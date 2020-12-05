@@ -8,6 +8,7 @@ const db = require('./connection.js');
 const listing_data_path = path.join(__dirname, '../data_generator/csv/psql_listing_data.csv');
 const similar_homes_data_path = path.join(__dirname, '../data_generator/csv/psql_similar_home_data.csv');
 const user_data_path = path.join(__dirname, '../data_generator/csv/psql_user_data.csv');
+const user_favorites_data_path = path.join(__dirname, '../data_generator/csv/psql_user_favorites_data.csv');
 
 // seed data into listings table from csv
 db.client.query(
@@ -41,6 +42,18 @@ db.client.query(
       console.log('error seeding psql', err);
     } else {
       console.log('user data successfully seeded');
+    }
+  }
+);
+
+//seed data into user_favorites table from csv
+db.client.query(
+  `COPY trelia.user_favorites(user_id, favorite_id) FROM '${user_favorites_data_path}' DELIMITER ',' CSV HEADER`,
+  (err, res) => {
+    if (err) {
+      console.log('error seeding psql', err);
+    } else {
+      console.log('user_favorites data successfully seeded');
     }
   }
 );
