@@ -51,6 +51,7 @@
     "mongoose": "^5.11.1",
     "node-sass": "^5.0.0",
     "nodemon": "^1.19.2",
+    "pg": "^8.5.1",
     "react": "^16.8.6",
     "react-dom": "^16.10.1",
     "serialize-javascript": ">=2.1.1"
