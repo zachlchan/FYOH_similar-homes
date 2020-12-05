@@ -18,11 +18,11 @@ const getRandomIntInclusive = (min, max, skew = 1) => {
 
 // helper function to generate a unique related ID
 const generateRelatedID = (highestID, collection) => {
-  let generated_id = getRandomIntInclusive(0, highestID);
+  let generated_id = getRandomIntInclusive(1, highestID);
   if (!collection[generated_id]) {
     return generated_id;
   } else {
-    generated_id = getRandomIntInclusive(0, highestID);
+    generated_id = getRandomIntInclusive(1, highestID);
     return generated_id;
   }
 }
@@ -33,7 +33,7 @@ writeListingData.write('price, size_bd, size_ba, size_sqft, address, neighborhoo
 
 const writeListings = (writer, callback) => {
   let i = numListings;
-  let id = 0;
+  // let id = 0;
 
   const write = () => {
     let ok = true;
@@ -49,7 +49,7 @@ const writeListings = (writer, callback) => {
       const listing_image = 'placeholder.com';
       const favorite = false;
 
-      const data = `${id}, ${price}, ${size_bd}, ${size_ba}, ${size_sqft}, ${address}, ${neighborhood}, ${listing_image}, ${favorite}\n`;
+      const data = `${price}, ${size_bd}, ${size_ba}, ${size_sqft}, ${address}, ${neighborhood}, ${listing_image}, ${favorite}\n`;
 
       if (i === 0) {
         writer.write(data, callback);
@@ -57,7 +57,7 @@ const writeListings = (writer, callback) => {
         ok = writer.write(data);
       }
 
-      id += 1;
+      //id += 1;
     } while (i > 0 && ok);
 
     if (i > 0) {
@@ -76,7 +76,7 @@ writeSimilarHomeData.write('listing_id, similar_id, similarity_weight\n');
 
 const writeSimilarHomes = (writer, callback) => {
   let i = numSimilarHomes;
-  let id = 0;
+  let id = 1;
   let id_counter = 0;
   let similar_ids = {};
 
@@ -86,7 +86,7 @@ const writeSimilarHomes = (writer, callback) => {
     do {
       i -= 1;
 
-      if (id_counter === 15) {
+      if (id_counter && (id_counter % 15 === 0)) {
         id += 1;
         similar_ids = {};
       }
@@ -97,6 +97,7 @@ const writeSimilarHomes = (writer, callback) => {
       const similarity_weight = (getRandomIntInclusive(1, 100, 0.5) * 0.1).toFixed(1);
 
       const data = `${listing_id}, ${similar_id}, ${similarity_weight}\n`;
+      id_counter +=1;
 
       if (i === 0) {
         writer.write(data, callback);
@@ -104,7 +105,6 @@ const writeSimilarHomes = (writer, callback) => {
         ok = writer.write(data);
       }
 
-      id_counter +=1;
     } while (i > 0 && ok);
 
     if (i > 0) {
@@ -123,7 +123,7 @@ writeUserData.write('user_id, user_name\n');
 
 const writeUsers = (writer, callback) => {
   let i = numUsers;
-  let id = 0;
+  let id = 1;
 
   const write = () => {
     let ok = true;
@@ -161,7 +161,7 @@ writeUserFavoritesData.write('user_id, favorite_id\n');
 
 const writeUserFavorites = (writer, callback) => {
   let i = numUsers; // 100
-  let id = 0;
+  let id = 1;
   let numFavorites = getRandomIntInclusive(0,20); // favorites = up to 20 per user
   let favorites_counter = 0;
   let favorite_ids = {};
