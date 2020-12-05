@@ -29,7 +29,7 @@ const generateRelatedID = (highestID, collection) => {
 
 // generate data for listings table
 const writeListingData = fs.createWriteStream('./data_generator/csv/psql_listing_data.csv');
-writeListingData.write('price, size_bd, size_ba, size_sqft, address, neighborhood, listing_image, favorite\n');
+writeListingData.write('price,size_bd,size_ba,size_sqft,street_address,neighborhood,listing_image,favorite\n');
 
 const writeListings = (writer, callback) => {
   let i = numListings;
@@ -44,12 +44,12 @@ const writeListings = (writer, callback) => {
       const size_bd = getRandomIntInclusive(1, 6, 0.5);
       const size_ba = getRandomIntInclusive(1, 6);
       const size_sqft = getRandomIntInclusive(12,40, 2) * 100;
-      const address = faker.address.streetAddress();
+      const street_address = faker.address.streetAddress();
       const neighborhood = faker.fake("{{address.county}}, {{address.city}}, {{address.stateAbbr}}");
       const listing_image = 'placeholder.com';
       const favorite = false;
 
-      const data = `${price}, ${size_bd}, ${size_ba}, ${size_sqft}, ${address}, ${neighborhood}, ${listing_image}, ${favorite}\n`;
+      const data = `${price},${size_bd},${size_ba},${size_sqft},${street_address},"${neighborhood}",${listing_image},${favorite}\n`;
 
       if (i === 0) {
         writer.write(data, callback);
@@ -72,7 +72,7 @@ writeListings(writeListingData, () => {writeListingData.end();});
 
 // generate data for similar_homes table
 const writeSimilarHomeData = fs.createWriteStream('./data_generator/csv/psql_similar_home_data.csv');
-writeSimilarHomeData.write('listing_id, similar_id, similarity_weight\n');
+writeSimilarHomeData.write('listing_id,similar_id,similarity_weight\n');
 
 const writeSimilarHomes = (writer, callback) => {
   let i = numSimilarHomes;
@@ -96,7 +96,7 @@ const writeSimilarHomes = (writer, callback) => {
       similar_ids[similar_id] = similar_id;
       const similarity_weight = (getRandomIntInclusive(1, 100, 0.5) * 0.1).toFixed(1);
 
-      const data = `${listing_id}, ${similar_id}, ${similarity_weight}\n`;
+      const data = `${listing_id},${similar_id},${similarity_weight}\n`;
       id_counter +=1;
 
       if (i === 0) {
@@ -119,7 +119,7 @@ writeSimilarHomes(writeSimilarHomeData, () => {writeSimilarHomeData.end();});
 
 // generate data for users table
 const writeUserData = fs.createWriteStream('./data_generator/csv/psql_user_data.csv');
-writeUserData.write('user_id, user_name\n');
+writeUserData.write('user_id,user_name\n');
 
 const writeUsers = (writer, callback) => {
   let i = numUsers;
@@ -134,7 +134,7 @@ const writeUsers = (writer, callback) => {
       const user_id = id;
       const user_name = faker.internet.userName();
 
-      const data = `${user_id}, ${user_name}\n`;
+      const data = `${user_id},${user_name}\n`;
 
       if (i === 0) {
         writer.write(data, callback);
@@ -157,7 +157,7 @@ writeUsers(writeUserData, () => {writeUserData.end();});
 
 // generate data for user_favorites table
 const writeUserFavoritesData = fs.createWriteStream('./data_generator/csv/psql_user_favorites_data.csv');
-writeUserFavoritesData.write('user_id, favorite_id\n');
+writeUserFavoritesData.write('user_id,favorite_id\n');
 
 const writeUserFavorites = (writer, callback) => {
   let i = numUsers; // 100
@@ -181,7 +181,7 @@ const writeUserFavorites = (writer, callback) => {
         const user_id = id;
         const favorite_id = generateRelatedID(numListings, favorite_ids);
 
-        const data = `${user_id}, ${favorite_id}\n`;
+        const data = `${user_id},${favorite_id}\n`;
 
         if (i === 0) {
           writer.write(data, callback);
