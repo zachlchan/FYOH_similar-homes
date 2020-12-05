@@ -1,4 +1,5 @@
 const { Client } = require('pg');
+
 const config = {
   database: 'sdc',
   port: 5432,
