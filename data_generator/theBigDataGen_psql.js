@@ -33,7 +33,6 @@ writeListingData.write('price,size_bd,size_ba,size_sqft,street_address,neighborh
 
 const writeListings = (writer, callback) => {
   let i = numListings;
-  // let id = 0;
 
   const write = () => {
     let ok = true;
@@ -57,7 +56,6 @@ const writeListings = (writer, callback) => {
         ok = writer.write(data);
       }
 
-      //id += 1;
     } while (i > 0 && ok);
 
     if (i > 0) {
@@ -119,11 +117,10 @@ writeSimilarHomes(writeSimilarHomeData, () => {writeSimilarHomeData.end();});
 
 // generate data for users table
 const writeUserData = fs.createWriteStream('./data_generator/csv/psql_user_data.csv');
-writeUserData.write('user_id,user_name\n');
+writeUserData.write('user_name\n');
 
 const writeUsers = (writer, callback) => {
   let i = numUsers;
-  let id = 1;
 
   const write = () => {
     let ok = true;
@@ -131,10 +128,9 @@ const writeUsers = (writer, callback) => {
     do {
       i -= 1;
 
-      const user_id = id;
       const user_name = faker.internet.userName();
 
-      const data = `${user_id},${user_name}\n`;
+      const data = `${user_name}\n`;
 
       if (i === 0) {
         writer.write(data, callback);
@@ -142,7 +138,6 @@ const writeUsers = (writer, callback) => {
         ok = writer.write(data);
       }
 
-      id += 1;
     } while (i > 0 && ok);
 
     if (i > 0) {
