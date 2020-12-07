@@ -175,6 +175,7 @@ const writeUserFavorites = (writer, callback) => {
       } else {
         const user_id = id;
         const favorite_id = generateRelatedID(numListings, favorite_ids);
+        favorite_ids[favorite_id] = favorite_id;
 
         const data = `${user_id},${favorite_id}\n`;
 
