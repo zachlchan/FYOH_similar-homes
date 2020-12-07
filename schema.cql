@@ -32,6 +32,7 @@ CREATE TABLE trelia.favorite_listings_by_user_id
 (
   listing listingDetail
   user_id int PRIMARY KEY,
+  user_name varchar,
   favorite_homes set<int>,
 )
-  WITH comment = 'Q2. Find favorite listings by user ID';
+  WITH comment = 'Q3. Find favorite listings by user ID';
