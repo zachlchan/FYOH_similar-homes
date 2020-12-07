@@ -14,7 +14,7 @@ CREATE KEYSPACE trelia WITH replication =
 --   favorite boolean,
 -- );
 
-CREATE TABLE trelia.home_listing_by_id
+CREATE TABLE trelia.home_listings_by_id
 (
   listing_id int PRIMARY KEY,
   price varchar,
