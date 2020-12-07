@@ -15,7 +15,7 @@ CREATE SCHEMA trelia
   CREATE TABLE trelia.similar_homes (
     listing_id  integer references trelia.listings(listing_id) ON DELETE CASCADE,
     similar_id integer references trelia.listings(listing_id) ON DELETE CASCADE,
-    similarity_weight decimal(3,2)
+    similarity_weight decimal(4,2)
   );
   CREATE TABLE trelia.users (
     user_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
