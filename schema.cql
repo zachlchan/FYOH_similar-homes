@@ -1,7 +1,3 @@
-
-CREATE KEYSPACE trelia WITH replication =
-  {'class': 'SimpleStrategy', 'replication_factor': 3};
-
 -- CREATE TYPE listingDetail AS
 -- (
 --   price int,
@@ -14,7 +10,12 @@ CREATE KEYSPACE trelia WITH replication =
 --   favorite boolean,
 -- );
 
-CREATE TABLE trelia.home_listings_by_id
+DROP KEYSPACE IF EXISTS trelia;
+
+CREATE KEYSPACE trelia WITH replication =
+  {'class': 'SimpleStrategy', 'replication_factor': 3};
+
+CREATE TABLE trelia.home_listings
 (
   listing_id int PRIMARY KEY,
   price varchar,
@@ -29,9 +30,8 @@ CREATE TABLE trelia.home_listings_by_id
 )
   WITH comment = 'Q1. Find homelistings by ID';
 
-CREATE TABLE trelia.favorite_listings_by_user_id
+CREATE TABLE trelia.favorite_listings
 (
-  listing listingDetail
   user_id int PRIMARY KEY,
   user_name varchar,
   favorite_homes set<int>,

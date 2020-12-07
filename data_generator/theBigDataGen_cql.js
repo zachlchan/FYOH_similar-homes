@@ -30,12 +30,14 @@ const generateRelatedID = (highestID, collection) => {
 // helper function to create map of similar homes
 const generateSimilarHomes = () => {
   let similarHomes = {}
+  let similarHomesMap= [];
   for (let i = 0; i < numSimilarHomes; i++) {
     const similar_id = generateRelatedID(numListings, similarHomes);
     const similarity_weight = (getRandomIntInclusive(1, 100, 0.5) * 0.1).toFixed(1);
     similarHomes[similar_id] = similarity_weight;
+    similarHomesMap.push(`${similar_id}:${similarity_weight}`);
   }
-  return JSON.stringify(similarHomes);
+  return similarHomesMap.toString();
 }
 
 // helper function to create set of favorite listings
@@ -49,7 +51,7 @@ const generateFavoriteListings = () => {
     favoriteListings.push(favorite_id);
   }
 
-  return favoriteListings.toString();
+  return favoriteListings;
 }
 
 // generate data for home_listings_by_id table
@@ -76,7 +78,7 @@ const writeHomeListings = (writer, callback) => {
       const favorite = false;
       const similar_homes = generateSimilarHomes();
 
-      const data = `${listing_id},${price},${size_bd},${size_ba},${size_sqft},${street_address},"${neighborhood}",${listing_image},${favorite}, ${similar_homes}\n`;
+      const data = `${listing_id}|${price}|${size_bd}|${size_ba}|${size_sqft}|${street_address}|${neighborhood}|${listing_image}|${favorite}|{${similar_homes}}\n`;
 
       if (i === 0) {
         writer.write(data, callback);
@@ -118,9 +120,9 @@ const writeFavoriteListings = (writer, callback) => {
       const user_id = id;
       const user_name = faker.internet.userName();
       const favorite_listings = generateFavoriteListings();
-      const favorite_homes = `{${favorite_listings}}`;
+      const favorite_homes = `[${favorite_listings}]`;
 
-      const data = `${user_id},${user_name},${favorite_homes}\n`;
+      const data = `${user_id}|${user_name}|${favorite_homes}\n`;
 
       if (i === 0) {
         writer.write(data, callback);
