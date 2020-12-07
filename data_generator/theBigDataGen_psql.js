@@ -92,7 +92,7 @@ const writeSimilarHomes = (writer, callback) => {
       const listing_id = id;
       const similar_id = generateRelatedID(numListings, similar_ids);
       similar_ids[similar_id] = similar_id;
-      const similarity_weight = (getRandomIntInclusive(1, 100, 0.5) * 0.1).toFixed(1);
+      const similarity_weight = (getRandomIntInclusive(100, 1000, 0.5) * 0.01).toFixed(2);
 
       const data = `${listing_id},${similar_id},${similarity_weight}\n`;
       id_counter +=1;
