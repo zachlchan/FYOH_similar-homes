@@ -2,7 +2,7 @@ const path = require('path');
 const db = require('./connection.js');
 
 // ---- to create schema in the db, in terminal enter:
-// ---- \i shema.sql
+// ---- \i schema.sql
 
 // file paths for csv's
 const listing_data_path = path.join(__dirname, '../data_generator/csv/psql_listing_data.csv');
