@@ -13,8 +13,8 @@ CREATE SCHEMA trelia
     favorite boolean
   );
   CREATE TABLE trelia.similar_homes (
-    listing_id  integer references trelia.listings(listing_id),
-    similar_id integer references trelia.listings(listing_id),
+    listing_id  integer references trelia.listings(listing_id) ON DELETE CASCADE,
+    similar_id integer references trelia.listings(listing_id) ON DELETE CASCADE,
     similarity_weight decimal(3,1)
   );
   CREATE TABLE trelia.users (
@@ -22,6 +22,6 @@ CREATE SCHEMA trelia
     user_name varchar(30)
   );
   CREATE TABLE trelia.user_favorites (
-    user_id integer references trelia.users(user_id),
-    favorite_id integer references trelia.listings(listing_id)
+    user_id integer references trelia.users(user_id) ON DELETE CASCADE,
+    favorite_id integer references trelia.listings(listing_id) ON DELETE CASCADE
   );
