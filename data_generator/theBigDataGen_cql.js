@@ -94,7 +94,11 @@ const writeHomeListings = (writer, callback) => {
 
   write();
 }
-writeHomeListings(writeHomeListingData, () => {writeHomeListingData.end();});
+console.time('generated home_listings data');
+writeHomeListings(writeHomeListingData, () => {
+  writeHomeListingData.end();
+  console.timeEnd('generated home_listings data');
+});
 
 
 // generate data for favorite_listings table
@@ -134,4 +138,8 @@ const writeFavoriteListings = (writer, callback) => {
 
   write();
 }
-writeFavoriteListings(writeFavoriteListingsData, () => {writeFavoriteListingsData.end();});
+console.time('generated favorite_listings data');
+writeFavoriteListings(writeFavoriteListingsData, () => {
+  writeFavoriteListingsData.end();
+  console.timeEnd('generated favorite_listings data');
+});

@@ -65,7 +65,11 @@ const writeListings = (writer, callback) => {
 
   write();
 }
-writeListings(writeListingData, () => {writeListingData.end();});
+console.time('generated listings data');
+writeListings(writeListingData, () => {
+  writeListingData.end();
+  console.timeEnd('generated listings data');
+});
 
 
 // generate data for similar_homes table
@@ -112,7 +116,11 @@ const writeSimilarHomes = (writer, callback) => {
 
   write();
 }
-writeSimilarHomes(writeSimilarHomeData, () => {writeSimilarHomeData.end();});
+console.time('generated similar_homes data')
+writeSimilarHomes(writeSimilarHomeData, () => {
+  writeSimilarHomeData.end();
+  console.timeEnd('generated similar_homes data');
+});
 
 
 // generate data for users table
@@ -147,7 +155,11 @@ const writeUsers = (writer, callback) => {
 
   write();
 }
-writeUsers(writeUserData, () => {writeUserData.end();});
+console.time('generated users data');
+writeUsers(writeUserData, () => {
+  writeUserData.end();
+  console.timeEnd('generated users data');
+});
 
 
 // generate data for user_favorites table
@@ -197,4 +209,8 @@ const writeUserFavorites = (writer, callback) => {
 
   write();
 }
-writeUserFavorites(writeUserFavoritesData, () => {writeUserFavoritesData.end();});
+console.time('generated user_favorites data');
+writeUserFavorites(writeUserFavoritesData, () => {
+  writeUserFavoritesData.end();
+  console.timeEnd('generated user_favorites data');
+});
