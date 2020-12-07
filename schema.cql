@@ -25,6 +25,7 @@ CREATE TABLE trelia.home_listing_by_id
   neighborhood varchar,
   listing_image varchar,
   similar_homes map<int, decimal>,
+  favorite boolean
 )
   WITH comment = 'Q1. Find homelistings by ID';
 
