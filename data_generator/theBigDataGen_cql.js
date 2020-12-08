@@ -1,5 +1,4 @@
 const fs = require('fs');
-const csvWriter = require('csv-write-stream');
 const faker = require('faker');
 
 // number of primary listings = 10M
