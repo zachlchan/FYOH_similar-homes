@@ -9,7 +9,7 @@ CREATE SCHEMA trelia
     size_sqft smallint CONSTRAINT valid_sqft_count CHECK (size_sqft > 1199 AND size_sqft < 4001),
     street_address varchar(100),
     neighborhood varchar(50),
-    listing_image varchar(100),
+    listing_image varchar(70),
     favorite boolean
   );
   CREATE TABLE trelia.similar_homes (

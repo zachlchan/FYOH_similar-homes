@@ -74,7 +74,8 @@ const writeHomeListings = (writer, callback) => {
       const size_sqft = getRandomIntInclusive(12,40, 2) * 100;
       const street_address = faker.address.streetAddress();
       const neighborhood = faker.fake("{{address.county}}, {{address.city}}, {{address.stateAbbr}}");
-      const listing_image = 'placeholder.com';
+      const img_num = i % 1000;
+      const listing_image = `https://sdc-trelia.s3-us-west-1.amazonaws.com/${img_num}.jpg`;
       const favorite = false;
       const similar_homes = generateSimilarHomes();
 
