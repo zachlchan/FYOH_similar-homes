@@ -86,12 +86,12 @@ const writeSimilarHomes = (writer, callback) => {
     let ok = true;
 
     do {
-      i -= 1;
-
       // track progress fo every 1M rows
       if (i % 1000000 === 0) {
-        console.log(`${i} rows generated`);
+        console.log(`${i} rows remaining`);
       }
+
+      i -= 1;
 
       if (id_counter && (id_counter % 15 === 0)) {
         id += 1;

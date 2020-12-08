@@ -65,6 +65,11 @@ const writeHomeListings = (writer, callback) => {
   const write = () => {
     let ok = true;
     do {
+       // track progress fo every 1M rows
+       if (i % 1000000 === 0) {
+        console.log(`${i} rows remaining`);
+      }
+
       i -= 1;
 
       const listing_id = id;
