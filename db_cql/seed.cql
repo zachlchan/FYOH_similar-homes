@@ -1,6 +1,6 @@
 -- in trelia keyspace: source 'db_cql/seed.cql'
 
-SOURCE 'schema.cql';
+SOURCE 'db_cql/schema.cql';
 
 -- remove existing data from tables without dropping
 TRUNCATE trelia.home_listings;
