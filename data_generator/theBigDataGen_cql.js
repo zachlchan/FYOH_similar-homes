@@ -3,13 +3,13 @@ const csvWriter = require('csv-write-stream');
 const faker = require('faker');
 
 // number of primary listings = 10M
-let numListings = 100;
+let numListings = 10000000;
 
 // number of similar homes = 15 per listing
 let numSimilarHomes = 15
 
 // users = 1M
-let numUsers = 100;
+let numUsers = 1000000;
 
 // helper function to generate random numbers
 const getRandomIntInclusive = (min, max, skew = 1) => {
