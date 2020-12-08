@@ -8,9 +8,9 @@ ALTER TABLE trelia.listings ADD CONSTRAINT valid_ba_count CHECK (size_ba > 0 AND
 
 ALTER TABLE trelia.listings ADD CONSTRAINT valid_sqft_count CHECK (size_sqft > 1199 AND size_sqft < 4001) NOT VALID;
 
-ALTER TABLE trelia.listings ADD CONSTRAINT street_address_length CHECK (LENGTH(street_address) <= 100) NOT VALID;
+ALTER TABLE trelia.listings ADD CONSTRAINT street_address_length CHECK (LENGTH(street_address) <= 100 and street_address ~ '^[\w., ]*$') NOT VALID;
 
-ALTER TABLE trelia.listings ADD CONSTRAINT neighborhood_length CHECK (LENGTH(neighborhood) <= 50) NOT VALID;
+ALTER TABLE trelia.listings ADD CONSTRAINT neighborhood_length CHECK (LENGTH(neighborhood) <= 50 and neighborhood ~ '^[\w, ]*$') NOT VALID;
 
 ALTER TABLE trelia.listings ADD CONSTRAINT listing_image_length CHECK (LENGTH(listing_image) <= 70) NOT VALID;
 
