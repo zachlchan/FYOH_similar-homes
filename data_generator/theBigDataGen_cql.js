@@ -55,7 +55,7 @@ const generateFavoriteListings = () => {
 
 // generate data for home_listings_by_id table
 const writeHomeListingData = fs.createWriteStream('./data_generator/csv/cql_home_listings_data.csv');
-writeHomeListingData.write('listing_id,price,size_bd,size_ba,size_sqft,street_address,neighborhood,listing_image,favorite, similar_homes\n');
+writeHomeListingData.write('listing_id|price|size_bd|size_ba|size_sqft|street_address|neighborhood|listing_image|favorite|similar_homes\n');
 
 const writeHomeListings = (writer, callback) => {
   let i = numListings;
@@ -110,7 +110,7 @@ writeHomeListings(writeHomeListingData, () => {
 
 // generate data for favorite_listings table
 const writeFavoriteListingsData = fs.createWriteStream('./data_generator/csv/cql_favorite_listings_data.csv');
-writeFavoriteListingsData.write('user_id,user_name,favorite_homes\n');
+writeFavoriteListingsData.write('user_id|user_name|favorite_homes\n');
 
 const writeFavoriteListings = (writer, callback) => {
   let i = numUsers;
