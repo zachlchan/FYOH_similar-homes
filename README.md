@@ -85,20 +85,12 @@ API reference for managing home listing data that supports the similar listings 
 
     *Updates the similarity weighting of a similar home*
 
-  * __Path Parameters__
-
-    ```similar-home_id``` integer
-
-    ****REQUIRED***
-
-    *The unique ID of the similar home listing to update*
-
   * __Request Body:__
-
-    *JSON object containing the attributes to be updated. All attributes must be included.*
     ```json
     {
-      "similarity_weight": "Number",
+      "listing_id": "Number",
+      "similar_id": "Number",
+      "similarity_weight": "Number"
     }
     ```
   * Success Status Code: ```204```
