@@ -30,19 +30,27 @@ API reference for managing home listing data that supports the similar listings 
 
       *The unique ID of the selected home listing*
 
+  * __Request Body:__
+    ```json
+    {
+      "listing_id": "Number"
+    }
+
   * Success Status Code: ```200```
   * __Response:__
     ```json
     [
       {
-        "id": "Number",
+        "listing_id": "Number",
         "price": "String",
         "size_bd": "Number",
         "size_ba": "Number",
         "size_sqft": "String",
-        "address": "String",
+        "street_address": "String",
         "neighborhood": "String",
-        "image": "String"
+        "listing_image": "String",
+        "favorite": "Boolean",
+        "similarity_weight": "Number"
       }
     ]
     ```
