@@ -13,11 +13,11 @@
 DROP KEYSPACE IF EXISTS trelia;
 
 CREATE KEYSPACE trelia WITH replication =
-  {'class': 'SimpleStrategy', 'replication_factor': 3};
+  {'class': 'SimpleStrategy', 'replication_factor': 1};
 
-CREATE TABLE trelia.home_listings
+CREATE TABLE trelia.similar_listings
 (
-  listing_id int PRIMARY KEY,
+  listing_id int,
   price varchar,
   size_bd tinyint,
   size_ba tinyint,
@@ -26,9 +26,11 @@ CREATE TABLE trelia.home_listings
   neighborhood varchar,
   listing_image varchar,
   favorite boolean,
-  similar_homes map<int, decimal>,
+  similar_to_id int,
+  similarity_weight decimal,
+  PRIMARY KEY (similar_to_id, similarity_weight),
 )
-  WITH comment = 'Q1. Find homelistings by ID';
+  WITH clustering order by (similarity_weight DESC);
 
 CREATE TABLE trelia.favorite_listings
 (
@@ -36,4 +38,4 @@ CREATE TABLE trelia.favorite_listings
   user_name varchar,
   favorite_homes set<int>,
 )
-  WITH comment = 'Q3. Find favorite listings by user ID';
+  WITH comment = 'Q3. Find favorite listings by user_ID';
