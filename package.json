@@ -49,6 +49,7 @@
     "cassandra-driver": "^4.6.1",
     "express": "^4.15.0",
     "mongoose": "^5.11.1",
+    "morgan": "^1.10.0",
     "node-sass": "^5.0.0",
     "nodemon": "^1.19.2",
     "pg": "^8.5.1",

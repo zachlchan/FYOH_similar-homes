@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const controller = require('../controller/listing.js');
 
@@ -6,6 +7,7 @@ const app = express();
 const port = 8030;
 const dist = path.join(__dirname, '../client/dist');
 
+app.use(morgan('dev'));
 app.use(express.json());
 app.use('/listings/:listing_id', express.static(dist));
 
