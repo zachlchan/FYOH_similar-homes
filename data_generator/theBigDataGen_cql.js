@@ -65,7 +65,7 @@ const writeHomeListings = (writer, callback) => {
     do {
       // track progress fo every 1M rows
       if (i % 1000000 === 0) {
-        console.log(`${i} rows remaining`);
+        console.log(`${i} rows generated`);
       }
 
       // increment id every 15 listings
@@ -113,8 +113,8 @@ writeHomeListings(writeHomeListingData, () => {
 
 
 // generate data for favorite_listings table
-// const writeFavoriteListingsData = fs.createWriteStream('./data_generator/csv/cql_favorite_listings_data.csv');
-// writeFavoriteListingsData.write('user_id|user_name|favorite_homes\n');
+const writeFavoriteListingsData = fs.createWriteStream('./data_generator/csv/cql_favorite_listings_data.csv');
+writeFavoriteListingsData.write('user_id|user_name|favorite_homes\n');
 
 const writeFavoriteListings = (writer, callback) => {
   let i = numUsers;
@@ -149,8 +149,8 @@ const writeFavoriteListings = (writer, callback) => {
 
   write();
 }
-// console.time('generated favorite_listings data');
-// writeFavoriteListings(writeFavoriteListingsData, () => {
-//   writeFavoriteListingsData.end();
-//   console.timeEnd('generated favorite_listings data');
-// });
+console.time('generated favorite_listings data');
+writeFavoriteListings(writeFavoriteListingsData, () => {
+  writeFavoriteListingsData.end();
+  console.timeEnd('generated favorite_listings data');
+});
