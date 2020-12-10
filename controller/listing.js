@@ -27,3 +27,16 @@ exports.addSimilar = (req, res) => {
   });
 }
 
+exports.updateSimilar = (req, res) => {
+  const { listing_id, similar_id, similarity_weight } = req.body;
+  console.log('PUT, request body', req.body);
+
+  db.client.query(`UPDATE trelia.similar_homes SET similarity_weight = ${similarity_weight} where listing_id = ${listing_id} and similar_id = ${similar_id};`, (err) => {
+    if (err) {
+      return handleError(err);
+    } else {
+      res.sendStatus(204);
+    }
+  })
+}
+

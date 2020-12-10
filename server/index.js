@@ -14,6 +14,8 @@ app.use('/carousel/:id', express.static(dist));
 app.get('/similar-homes', controller.getSimilar);
 // add a similar listing to a listing id
 app.post('/similar-homes', controller.addSimilar);
+// update a similar listing's similarity weight
+app.put('/similar-homes', controller.updateSimilar);
 
 app.listen(8030, () => {
   console.log(`listening on http://localhost:${port}`);
