@@ -23,7 +23,7 @@ exports.getSimilar = (req, res) => {
     ON
       trelia.listings.listing_id = trelia.similar_homes.similar_id
     WHERE
-      trelia.similar_homes.listing_id = ${listing_id};`, (err, similarListings) => {
+      trelia.similar_homes.listing_id = $1;`, [listing_id], (err, similarListings) => {
     if (err) {
       return handleError(err);
     } else {
@@ -39,7 +39,7 @@ exports.addSimilar = (req, res) => {
   db.client.query(
     `INSERT INTO
       trelia.similar_homes (listing_id, similar_id, similarity_weight)
-    VALUES (${listing_id}, ${similar_id}, ${similarity_weight});`, (err) => {
+    VALUES ($1, $2, $3);`, [listing_id, similar_id, similarity_weight], (err) => {
     if (err) {
       return handleError(err);
     } else {
@@ -56,11 +56,11 @@ exports.updateSimilar = (req, res) => {
     `UPDATE
       trelia.similar_homes
     SET
-      similarity_weight = ${similarity_weight}
+      similarity_weight = $1
     WHERE
-      listing_id = ${listing_id}
+      listing_id = $2
     AND
-      similar_id = ${similar_id};`, (err) => {
+      similar_id = $3;`, [similarity_weight, listing_id, similar_id], (err) => {
     if (err) {
       return handleError(err);
     } else {
@@ -77,8 +77,8 @@ exports.deleteSimilar = (req, res) => {
     `DELETE FROM
       trelia.similar_homes
     WHERE
-      listing_id = ${listing_id}
-    AND similar_id = ${similar_id};`, (err) => {
+      listing_id = $1
+    AND similar_id = $2;`, [listing_id, similar_id], (err) => {
     if (err) {
       return handleError(err);
     } else {
