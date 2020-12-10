@@ -27,11 +27,11 @@ class Slide extends React.Component {
         <div className={styles.slide} style={{ transform: `translateX(${this.props.x}%)` }}>
           <div className={styles.image}>
             <div className={styles.listingPic}>
-            <img src={this.props.listing.image} />
+            <img src={this.props.listing.listing_image} />
             </div>
             {heartToRender}
           </div>
-          <Description id={this.props.listing.id} listing={this.props.listing} />
+          <Description id={this.props.listing.listing_id} listing={this.props.listing} />
         </div>
       </div>
     );

@@ -12,16 +12,24 @@ class App extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   axios({
+  //     method: 'get',
+  //     url: `${window.location.href}listing`,
+  //   })
+  //     .then((response) => {
+  //       console.log('success', response.data);
+  //       this.setState({
+  //         listings: response.data,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
   componentDidMount() {
-    axios({
-      method: 'get',
-      url: `${window.location.href}listing`,
-    })
-      .then((response) => {
-        console.log('success', response.data);
-        this.setState({
-          listings: response.data,
-        });
+    axios.get(`${window.location.pathname}similar-homes`)
+      .then((res) => {
+        console.log('success', res.data);
+        this.setState({ listings: res.data });
       })
       .catch((err) => console.log(err));
   }
