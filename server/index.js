@@ -16,6 +16,8 @@ app.get('/similar-homes', controller.getSimilar);
 app.post('/similar-homes', controller.addSimilar);
 // update a similar listing's similarity weight
 app.put('/similar-homes', controller.updateSimilar);
+// delete a similar home related to a listing id
+app.delete('/similar-homes', controller.deleteSimilar);
 
 app.listen(8030, () => {
   console.log(`listening on http://localhost:${port}`);

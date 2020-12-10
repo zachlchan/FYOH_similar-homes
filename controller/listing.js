@@ -35,7 +35,20 @@ exports.updateSimilar = (req, res) => {
     if (err) {
       return handleError(err);
     } else {
-      res.sendStatus(204);
+      res.sendStatus(200);
+    }
+  })
+}
+
+exports.deleteSimilar = (req, res) => {
+  const { listing_id, similar_id } = req.body;
+  console.log('DELETE, request body', req.body);
+
+  db.client.query(`DELETE FROM trelia.similar_homes where listing_id = ${listing_id} and similar_id = ${similar_id};`, (err) => {
+    if (err) {
+      return handleError(err);
+    } else {
+      res.sendStatus(200)
     }
   })
 }
