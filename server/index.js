@@ -9,8 +9,9 @@ const dist = path.join(__dirname, '../client/dist');
 app.use(express.json());
 app.use('/listings/:listing_id', express.static(dist));
 
+// legacy route --> app.get('*/:id/listing', listingRouter.getOne);
+
 // get all similar listings when given a specific id
-// app.get('*/:id/listing', listingRouter.getOne);
 app.get('/listings/:listing_id/similar-homes', controller.getSimilar);
 // add a similar listing to a listing id
 app.post('*/similar-homes', controller.addSimilar);
