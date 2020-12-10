@@ -63,14 +63,9 @@ API reference for managing home listing data that supports the similar listings 
   * __Request Body:__
     ```json
     {
-      "id": "Number",
-      "price": "String",
-      "size_bd": "Number",
-      "size_ba": "Number",
-      "size_sqft": "String",
-      "address": "String",
-      "neighborhood": "String",
-      "image": "String"
+      "listing_id": "Number",
+      "similar_id": "Number",
+      "similarity_weight": "Number"
     }
     ```
 
