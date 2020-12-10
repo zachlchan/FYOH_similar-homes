@@ -81,7 +81,7 @@ API reference for managing home listing data that supports the similar listings 
 
 
 * ### Update similar home
-  * __PUT__ ```/similar-homes/:similar-home_id```
+  * __PUT__ ```/similar-homes```
 
     *Updates the similarity weighting of a similar home*
 
@@ -93,7 +93,7 @@ API reference for managing home listing data that supports the similar listings 
       "similarity_weight": "Number"
     }
     ```
-  * Success Status Code: ```204```
+  * Success Status Code: ```200```
 
   * __Response:__
 
@@ -104,19 +104,18 @@ API reference for managing home listing data that supports the similar listings 
   * Error Status Code: ```400```
 
 * ### Remove similar home
-  * __DELETE__ ```/similar-homes/:similar-home_id```
+  * __DELETE__ ```/similar-homes```
 
     *Removes a home listing from the similar homes collection.*
 
-  * __Path Parameters:__
-
-    ```similar-home_id``` integer
-
-    ****REQUIRED***
-
-    *The unique id of the similar home listing to be removed.*
-
-  * Success Status Code: ```204```
+  * __Request Body:__
+    ```json
+    {
+      "listing_id": "Number",
+      "similar_id": "Number"
+    }
+    ```
+  * Success Status Code: ```200```
 
   * __Response:__
 
@@ -197,7 +196,7 @@ API reference for managing home listing data that supports the similar listings 
     }
     ```
 
-  * Success Status Code: ```204```
+  * Success Status Code: ```200```
 
   * __Response:__
 
