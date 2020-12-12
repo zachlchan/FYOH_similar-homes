@@ -12,6 +12,7 @@
     "test:cover": "jest --coverage",
     "react-dev": "webpack -w",
     "react-prod": "webpack",
+    "k6": "k6 run load_testing/stress_test.js",
     "start": "nodemon server/index.js",
     "seed-database": "node seed.js"
   },
@@ -50,6 +51,7 @@
     "express": "^4.15.0",
     "mongoose": "^5.11.1",
     "morgan": "^1.10.0",
+    "newrelic": "^7.0.2",
     "node-sass": "^5.0.0",
     "nodemon": "^1.19.2",
     "pg": "^8.5.1",

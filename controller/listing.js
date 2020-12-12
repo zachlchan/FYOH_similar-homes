@@ -1,11 +1,14 @@
-const db = require('../db_psql/connection.js');
+const database = require('../db_psql/connection.js');
 
+// options to toggle between client and pool
+// const db = database.client;
+const db = database.pool;
 // Get request for all the similar homes associated with a listing
 exports.getSimilar = (req, res) => {
   const { listing_id } = req.params;
   // console.log('GET, similar for listing_id', listing_id);
 
-  db.client.query(
+  db.query(
     `SELECT
       trelia.listings.*,
       similarity_weight
@@ -29,7 +32,7 @@ exports.addSimilar = (req, res) => {
   const { listing_id, similar_id, similarity_weight } = req.body;
   // console.log('POST, request body', req.body);
 
-  db.client.query(
+  db.query(
     `INSERT INTO
       trelia.similar_homes (listing_id, similar_id, similarity_weight)
     VALUES ($1, $2, $3);`, [listing_id, similar_id, similarity_weight], (err) => {
@@ -45,7 +48,7 @@ exports.updateSimilar = (req, res) => {
   const { listing_id, similar_id, similarity_weight } = req.body;
   // console.log('PUT, request body', req.body);
 
-  db.client.query(
+  db.query(
     `UPDATE
       trelia.similar_homes
     SET
@@ -66,7 +69,7 @@ exports.deleteSimilar = (req, res) => {
   const { listing_id, similar_id } = req.body;
   // console.log('DELETE, request body', req.body);
 
-  db.client.query(
+  db.query(
     `DELETE FROM
       trelia.similar_homes
     WHERE

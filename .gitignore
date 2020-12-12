@@ -27,3 +27,4 @@ build/
 ## Key Files
 *.pem
 *.csv
+newrelic.js
