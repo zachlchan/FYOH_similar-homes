@@ -1,4 +1,4 @@
-const { Client } = require('pg');
+const { Client, Pool } = require('pg');
 
 const config = {
   database: 'sdc',
@@ -11,4 +11,11 @@ client
   .then(() => console.log('connected to PSQL'))
   .catch((e) => console.log(e));
 
+const pool = new Pool(config);
+pool
+  .connect()
+  .then(() => console.log('connected to PSQL'))
+  .catch((e) => console.log(e));
+
 module.exports.client = client;
+module.exports.pool = client;
