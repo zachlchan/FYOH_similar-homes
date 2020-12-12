@@ -7,14 +7,7 @@ exports.getSimilar = (req, res) => {
 
   db.client.query(
     `SELECT
-      trelia.listings.listing_id,
-      price, size_bd,
-      size_ba,
-      size_sqft,
-      street_address,
-      neighborhood,
-      listing_image,
-      favorite,
+      trelia.listings.*,
       similarity_weight
     FROM
       trelia.listings
