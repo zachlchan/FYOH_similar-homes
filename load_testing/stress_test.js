@@ -32,6 +32,5 @@ export default function () {
   });
   errorRate.add(!result);
 
-
   sleep(1);
 }
