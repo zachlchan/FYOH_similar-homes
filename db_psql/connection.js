@@ -7,7 +7,7 @@ const client_config = {
 
 const pool_config = {
   database: 'sdc',
-  max: 20,
+  max: 10,
   port: 5432,
 }
 
